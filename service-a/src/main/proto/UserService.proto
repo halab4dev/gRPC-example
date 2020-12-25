@@ -1,0 +1,20 @@
+// https://codelabs.developers.google.com/codelabs/cloud-grpc-java?hl=en#2
+// https://developers.google.com/protocol-buffers/docs/proto3
+
+syntax = "proto3";
+option java_multiple_files = true;
+package vn.com.ntqsolution.controller;
+
+message GetUserRequest {
+  string userId = 1;
+}
+
+message GetUserResponse {
+  string userId = 1;
+  string username = 2;
+  int32 age = 3;
+}
+
+service UserService {
+  rpc getUser(GetUserRequest) returns (GetUserResponse);
+}

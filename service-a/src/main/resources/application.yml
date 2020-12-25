@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Service-A
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        healthCheckPath: /chat/v1/pings
+        healthCheckInterval: 15s

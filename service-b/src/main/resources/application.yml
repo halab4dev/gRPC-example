@@ -1,0 +1,17 @@
+server:
+  port: 0
+  gRPCPort: ${GRPC_PORT}
+spring:
+  application:
+    name: Service-B
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        healthCheckPath: /ums/v1/pings
+        healthCheckInterval: 15s
+        tags: gRPCPort=${GRPC_PORT}
+        metadata:
+          gRPCPort: ${GRPC_PORT}
